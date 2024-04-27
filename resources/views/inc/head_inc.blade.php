@@ -21,10 +21,10 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  text-white" href="/cart">Корзина</a>
+                            <a class="nav-link  text-white" href="{{ route('cart') }}">Корзина</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link  text-white" href="/login">Войти</a>
+                            <a class="nav-link  text-white" href="{{ route('login') }}">Войти</a>
                         </li>
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button"
@@ -32,8 +32,8 @@
                                 Мой профиль
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href="/cart">Корзина</a></li>
-                                <li><a class="dropdown-item  text-white" href="/profile">Личный кабинет</a>
+                                <li><a class="dropdown-item  text-white" href="{{ route('cart') }}">Корзина</a></li>
+                                <li><a class="dropdown-item  text-white" href="{{ route('profile') }}">Личный кабинет</a>
                                 </li>
                                 <li><a class="dropdown-item  text-white" href="#">Админ панель</a></li>
                                 <li>

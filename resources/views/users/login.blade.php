@@ -14,19 +14,29 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6 bg-white p-4 mb-4 mx-3 rounded custom-shadow">
                             <h2 class="text-center mb-4">Авторизация</h2>
-                            <form>
+                            <form action="{{route('contact-form')}}" method="post">
+                                @csrf
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Имя пользователя</label>
-                                    <input type="text" class="form-control" id="username" placeholder="Введите ваше имя пользователя" required>
+                                    <input type="text" class="form-control" name="username" id="username" placeholder="Введите ваше имя пользователя" required minlength="5">
                                 </div>
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Пароль</label>
-                                    <input type="password" class="form-control" id="password" placeholder="Введите ваш пароль" required>
+                                    <input type="password" class="form-control" name="password" id="password" placeholder="Введите ваш пароль" required minlength="8">
                                 </div>
                                 <button type="submit" class="btn btn-dark btn-block">Войти</button>
                             </form>
+                            @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             <div class="mt-3">
-                                <a href="#">Забыли пароль?</a> | <a href="/registration">Создать аккаунт</a>
+                                <a href="#">Забыли пароль?</a> | <a href="{{ route('registration') }}">Создать аккаунт</a>
                             </div>
                             <hr>
                             <div class="text-center">

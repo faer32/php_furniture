@@ -59,7 +59,7 @@
                                 </div>
                                 <!-- Закончилась разметка корзины -->
                             </div>
-                            <a class="btn btn-dark" href="/create_order">
+                            <a class="btn btn-dark" href="{{ route('create_order') }}">
                                 Оформить заказ
                             </a>
                         </div>

@@ -11,13 +11,13 @@
                     height="16">
             </button>
             <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
-                <li><a class="dropdown-item text-white" href="/catalog">Все товары</a></li>
-                <li><a class="dropdown-item text-white" href="/catalog">Кухня</a></li>
-                <li><a class="dropdown-item text-white" href="/catalog">Спальня</a></li>
-                <li><a class="dropdown-item text-white" href="/catalog">Гостинная</a></li>
-                <li><a class="dropdown-item text-white" href="/catalog">Офис</a></li>
-                <li><a class="dropdown-item text-white" href="/catalog">Фурнитура</a></li>
-                <li><a class="dropdown-item text-white" href="/catalog">Декор</a></li>
+                <li><a class="dropdown-item text-white" href="{{ route('catalog') }}">Все товары</a></li>
+                <li><a class="dropdown-item text-white" href="{{ route('catalog') }}">Кухня</a></li>
+                <li><a class="dropdown-item text-white" href="{{ route('catalog') }}">Спальня</a></li>
+                <li><a class="dropdown-item text-white" href="{{ route('catalog') }}">Гостинная</a></li>
+                <li><a class="dropdown-item text-white" href="{{ route('catalog') }}">Офис</a></li>
+                <li><a class="dropdown-item text-white" href="{{ route('catalog') }}">Фурнитура</a></li>
+                <li><a class="dropdown-item text-white" href="{{ route('catalog') }}">Декор</a></li>
             </ul>
         </div>
         <!-- Значек корзины, вызывает модальное окно -->
@@ -85,7 +85,7 @@
                             </div>
                             <!-- Закончилась разметка корзины -->
                         </div>
-                        <a class="btn btn-dark" href="/create_order">
+                        <a class="btn btn-dark" href="{{ route('create_order') }}">
                             Оформить заказ
                         </a>
                     </div>

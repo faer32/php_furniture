@@ -52,7 +52,7 @@
                         <div class="card border-primary rounded custom-shadow">
                             <img src="images/images/goods/set of tea table and three chairs.jpg" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <a href="/product">
+                                <a href="{{ route('product') }}">
                                     <p class="card-title">Чайный столик и три стула</p>
                                 </a>
                                 <p class="card-text text-truncate">Комплект из трёх стульев и дизайнерский столик для гостинной комнаты.</p>
