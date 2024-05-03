@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\{
+    LoginController,
+    RegistrationController,
+    ProductController
+};
+
 use Illuminate\Support\Facades\Route;
 
 //glob(app_path().'\Http\Controllers\*.php')
@@ -26,6 +30,8 @@ Route::post('/login/submit', [LoginController::class, 'submit'])->name('contact-
 //регистрация
 Route::post('/registration/submit', [RegistrationController::class, 'submit'])->name('registr-form');
 
+Route::get('/catalog', [ProductController::class, 'result'])->name('catalog');
+
 //профиль
 Route::get('/profile', function () {
     return view('users/profile');
@@ -35,11 +41,6 @@ Route::get('/profile', function () {
 Route::get('/registration', function () {
     return view('users/registration');
 })->name('registration');
-
-//корзина
-Route::get('/catalog', function () {
-    return view('goods/catalog');
-})->name('catalog');
 
 //каталог
 Route::get('/cart', function () {

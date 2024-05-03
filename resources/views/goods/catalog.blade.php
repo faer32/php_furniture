@@ -47,29 +47,35 @@
                             <button type="submit" class="btn btn-primary mx-3 mt-3">Применить</button>
                         </form>
                     </div>
-                    <!-- Карта товара -->
-                    <div class="col-lg-4 col-md-6 p-4">
-                        <div class="card border-primary rounded custom-shadow">
-                            <img src="images/images/goods/set of tea table and three chairs.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
+                    @foreach($products as $pr)
+                        <!-- Карта товара -->
+                        <div class="col-lg-4 col-md-6 p-4">
+                            <div class="card border-primary rounded custom-shadow">
+                                <img src="{{ $pr->url_picture }}" class="card-img-top" alt="...">
+                                <div class="card-body">
                                 <a href="{{ route('product') }}">
-                                    <p class="card-title">Чайный столик и три стула</p>
-                                </a>
-                                <p class="card-text text-truncate">Комплект из трёх стульев и дизайнерский столик для гостинной комнаты.</p>
-                                <p class="product_id">id: 02265</p>
-                                <div class="d-flex justify-content-between">
-                                    <p><s>100</s> $</p>
-                                    <p><strong>90.00 $</strong></p>
-                                    <span class="badge bg-warning text-dark">Скидка 10.00 %</span>
-                                    <!-- <p><strong>100.00 $</strong></p> -->
-                                    <a href="#" class="btn add-to-cart">
-                                        <img class="mx-1" src="images/icons/cart-plus.svg" alt="Catalog Icon"
-                                            width="32" height="32">
+                                        <p class="card-title">{{ $pr->name }}</p>
                                     </a>
+                                    <p class="card-text text-truncate">{{ $pr->description }}</p>
+                                    <p class="product_id">{{ $pr->uniq_id }}</p>
+                                    <div class="d-flex justify-content-between">
+                                        <!-- Старая цена -->
+                                        @if ($pr->old_price !== null)
+                                            <p><s>{{ $pr->old_price }}</s> $</p>
+                                            <!-- Скидка -->
+                                            <span class="badge bg-warning text-dark">Скидка {{ number_format(($pr->old_price - $pr->price) / $pr->old_price * 100, 0) }} %</span>
+                                        @endif
+                                        <p><strong>{{ $pr->price }} $</strong></p>
+                                        <!-- <p><strong>100.00 $</strong></p> -->
+                                        <a href="#" class="btn add-to-cart">
+                                            <img class="mx-1" src="images/icons/cart-plus.svg" alt="Catalog Icon"
+                                                width="32" height="32">
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach 
                 </div>
                 <!-- Пагинация -->
                 <nav aria-label="Page navigation example">
