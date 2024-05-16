@@ -19,7 +19,7 @@
                                 <form>
                                     <div class="row">
                                         <div class="col-md-12 mb-3 text-center">
-                                            <img src="images/images/baseavatar.jpg"
+                                            <img src="/storage/images/baseavatar.jpg"
                                                 alt="Аватар пользователя" class="img-fluid rounded-circle"
                                                 style="max-width: 150px;">
                                             <input type="file" class="form-control mt-3" id="avatar"

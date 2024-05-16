@@ -8,6 +8,7 @@ export default defineConfig({
             'resources/css/my_css.css',
             'resources/css/my_footer_css.css',
             'resources/css/bootstrap.min.css',
+            'resources/css/dashboard.css',
             'resources/js/app.js',
             'resources/js/bootstrap.js',
             'resources/js/bootstrap.bundle.min.js',

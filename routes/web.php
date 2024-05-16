@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\{
-    LoginController,
+    AuthController,
     RegistrationController,
-    ProductController
+    ProductController,
+    ContactFormController
 };
 
 use Illuminate\Support\Facades\Route;
@@ -19,16 +20,21 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-//авторизация
-Route::get('/login', function () {
-    return view('users/login');
-})->name('login');
+
+//отображение формы авторизации
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+//отображение формы авторизации
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //авторизация
-Route::post('/login/submit', [LoginController::class, 'submit'])->name('contact-form');
+Route::post('/login_process', [AuthController::class, 'login_process'])->name('login_process');
+
+//отображение формы регистрация
+Route::get('/registration', [RegistrationController::class, 'showRegistrationForm'])
+->name('registration');
 
 //регистрация
-Route::post('/registration/submit', [RegistrationController::class, 'submit'])->name('registr-form');
+Route::post('/register_process', [RegistrationController::class, 'register'])->name('register_process');
 
 Route::get('/catalog', [ProductController::class, 'result'])->name('catalog');
 
@@ -37,10 +43,13 @@ Route::get('/profile', function () {
     return view('users/profile');
 })->name('profile');
 
-//регистрация
-Route::get('/registration', function () {
-    return view('users/registration');
-})->name('registration');
+//восстановление пароля
+Route::get('/email', [ContactFormController::class, 'show'])->name('email');
+Route::post('/email_process', [ContactFormController::class, 'email_process'])->name('email_process');
+
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
 
 //каталог
 Route::get('/cart', function () {
@@ -55,5 +64,5 @@ Route::get('/product', function () {
 //оформить заказ
 Route::get('/create_order', function () {
     return view('orders/create_order');
-})->name('create_order');
+})->name('create_order')->middleware('auth.custom');
 

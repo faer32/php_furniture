@@ -23,9 +23,17 @@
                         <li class="nav-item">
                             <a class="nav-link  text-white" href="{{ route('cart') }}">Корзина</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link  text-white" href="{{ route('login') }}">Войти</a>
-                        </li>
+                        @auth("web")
+                            <li class="nav-item">
+                                <a class="nav-link  text-white" href="{{ route('logout') }}">Выйти</a>
+                            </li>
+                        @endauth
+                        @guest("web")
+                            <li class="nav-item">
+                                <a class="nav-link  text-white" href="{{ route('login') }}">Войти</a>
+                            </li>
+                        @endguest
+                        
                         <li class="nav-item dropdown ">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,7 +43,7 @@
                                 <li><a class="dropdown-item  text-white" href="{{ route('cart') }}">Корзина</a></li>
                                 <li><a class="dropdown-item  text-white" href="{{ route('profile') }}">Личный кабинет</a>
                                 </li>
-                                <li><a class="dropdown-item  text-white" href="#">Админ панель</a></li>
+                                <li><a class="dropdown-item  text-white" href="{{route ('admin.login')}}">Админ панель</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

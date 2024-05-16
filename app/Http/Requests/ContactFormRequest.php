@@ -4,17 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\password;
-
-class RegistrationRequest extends FormRequest
+class ContactFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return auth("web")->check();
+        return false;
     }
 
     /**
@@ -25,14 +22,7 @@ class RegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => 'confirmed'
-        ];
-    }
-    // изменение сообщения об ошибке
-    public function messages()
-    {
-        return [
-            'password.confirmed' => 'Пароли не совпадают'
+            "email" => ["required", "email", "exists:users"]
         ];
     }
 }

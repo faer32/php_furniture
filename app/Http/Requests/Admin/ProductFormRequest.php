@@ -1,20 +1,18 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-use function Laravel\Prompts\confirm;
-use function Laravel\Prompts\password;
-
-class RegistrationRequest extends FormRequest
+class ProductFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return auth("web")->check();
+        return auth("admin")->check();
     }
 
     /**
@@ -25,14 +23,12 @@ class RegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'password' => 'confirmed'
-        ];
-    }
-    // изменение сообщения об ошибке
-    public function messages()
-    {
-        return [
-            'password.confirmed' => 'Пароли не совпадают'
+            "uniq_id" => ["required"],
+            "category" => ["required"],
+            "name" => ["required"],
+            "description" => ["required"],
+            "price" => ["required"],
+            "picture" => ["image"],
         ];
     }
 }

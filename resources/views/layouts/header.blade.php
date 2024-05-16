@@ -19,12 +19,19 @@
 </head>
 
 <body>
-    <header>
-        @include('inc.head_inc')
-    </header>   
+    @if(!Request::is('admin*'))
+        <header>
+            @include('inc.head_inc')
+        </header>   
+    @endif   
+    
     <!-- Контент -->
     <section>
-        @include('inc.catalog_inc')
+        @if(!Request::is('admin*'))
+            <header>
+                @include('inc.catalog_inc')
+            </header>   
+        @endif
         @yield('content') 
     </section>  
     @if(Request::is('/'))

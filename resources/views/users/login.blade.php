@@ -14,7 +14,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6 bg-white p-4 mb-4 mx-3 rounded custom-shadow">
                             <h2 class="text-center mb-4">Авторизация</h2>
-                            <form action="{{route('contact-form')}}" method="post">
+                            <form action="{{ route('login_process') }}" method="post">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Имя пользователя</label>
@@ -26,6 +26,23 @@
                                 </div>
                                 <button type="submit" class="btn btn-dark btn-block">Войти</button>
                             </form>
+                            <br>
+                            @if (session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                            @if (session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             @if($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -36,7 +53,7 @@
                             </div>
                             @endif
                             <div class="mt-3">
-                                <a href="#">Забыли пароль?</a> | <a href="{{ route('registration') }}">Создать аккаунт</a>
+                                <a href="{{ route('email') }}">Забыли пароль?</a> | <a href="{{ route('registration') }}">Создать аккаунт</a>
                             </div>
                             <hr>
                             <div class="text-center">

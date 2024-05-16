@@ -1,0 +1,1 @@
+<p>Пароль: {{$password_user}}</p>

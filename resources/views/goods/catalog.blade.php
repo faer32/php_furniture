@@ -51,7 +51,11 @@
                         <!-- Карта товара -->
                         <div class="col-lg-4 col-md-6 p-4">
                             <div class="card border-primary rounded custom-shadow">
-                                <img src="{{ $pr->url_picture }}" class="card-img-top" alt="...">
+                                @if ($pr->url_picture == null)
+                                    <img src="/images/images/Not found image.png" class="card-img-top" alt="...">
+                                @else
+                                    <img src="/storage/images/goods/{{ $pr->url_picture }}" class="card-img-top" alt="...">
+                                @endif
                                 <div class="card-body">
                                 <a href="{{ route('product') }}">
                                         <p class="card-title">{{ $pr->name }}</p>

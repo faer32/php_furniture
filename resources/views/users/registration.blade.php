@@ -14,7 +14,7 @@
                     <div class="row justify-content-center">
                         <div class="col-md-9 bg-white p-4 mb-5 mx-2 rounded custom-shadow">
                             <h2 class="text-center mb-4">Регистрация</h2>
-                            <form action="{{route('registr-form')}}" method="post">
+                            <form action="{{route('register_process')}}" method="post">
                             @csrf
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
@@ -24,7 +24,7 @@
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="lastName" class="form-label">Фамилия*</label>
-                                        <input type="text" name="secondname" class="form-control" id="lastName"
+                                        <input type="text" name="lastName" class="form-control" id="lastName"
                                             placeholder="Введите вашу фамилию" required>
                                     </div>
                                     <div class="col-md-6 mb-3">
