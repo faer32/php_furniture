@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy("created_at", "DESC")->paginate(10);
+        $products = Product::orderBy("created_at", "DESC")->get();
+        // ->paginate();
         // dd($products);
         return view('admin.products', [
             "products" => $products,
@@ -34,8 +35,13 @@ class PostController extends Controller
      */
     public function store(ProductFormRequest $request)
     {
-        $product = Product::create($request->validated());
-
+        $data = $request->validated();
+        if($request->has("url_picture")){
+            $originalName = $request->file('url_picture')->getClientOriginalName();
+            $path = $request->file('url_picture')->storeAs('public/images/goods', $originalName);
+            $data['url_picture'] = str_replace('public/images/goods/', '', $path);
+        }
+        $product = Product::create($data);
         return redirect(route("admin.products.index"));
     }
 
@@ -67,8 +73,9 @@ class PostController extends Controller
         $data = $request->validated();
 
         if($request->has("url_picture")){
-            $url_picture = str_replace("public/images/goods","",$request->file("url_picture")->store("public/images/goods"));
-            $data["url_picture"] = $url_picture;
+            $originalName = $request->file('url_picture')->getClientOriginalName();
+            $path = $request->file('url_picture')->storeAs('public/images/goods', $originalName);
+            $data['url_picture'] = str_replace('public/images/goods/', '', $path);
         }
         $product->update($data);
 

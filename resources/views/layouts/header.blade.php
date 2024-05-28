@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Стиль footer-a для главной страницы -->
     <!-- Favicons for different platforms -->
-    @vite(['resources/css/my_css.css', 'resources/css/my_footer_css.css', 'resources/css/bootstrap.min.css', 
+    @vite(['resources/css/my_css.css', 'resources/css/app.css','resources/css/my_footer_css.css', 'resources/css/bootstrap.min.css', 
     'resources/js/app.js', 'resources/js/bootstrap.js', 'resources/js/bootstrap.bundle.min.js',
     'resources/js/jquery-3.7.0.min.js', 'resources/js/jquery-ajax.js', 'resources/js/jquery-events.js',  
     ])

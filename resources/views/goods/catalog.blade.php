@@ -17,9 +17,9 @@
                             Фильтры
                         </button>
                 
-                        <form action="" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
+                        <form action="{{ route('catalog') }}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
                             <div class="form-check text-white mx-3">
-                                <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on">
+                                <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {{ $onSale == 'on' ? 'checked' : '' }}>
                                 <input type="hidden" name="q" value="request.GET.q">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Товары по акции
@@ -27,19 +27,19 @@
                             </div>
                             <p class="text-white mx-3 mt-3">Сортировать:</p>
                             <div class="form-check text-white mx-3">
-                                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default" checked>
+                                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault1" value="default" {{ $orderBy == 'price' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     По умолчанию
                                 </label>
                             </div>
                             <div class="form-check text-white mx-3">
-                                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price">
+                                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault2" value="price" {{ $orderBy == 'price' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     От дешевых к дорогим
                                 </label>
                             </div>
                             <div class="form-check text-white mx-3">
-                                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price">
+                                <input class="form-check-input" type="radio" name="order_by" id="flexRadioDefault3" value="-price" {{ $orderBy == '-price' ? 'checked' : '' }}>
                                 <label class="form-check-label" for="flexRadioDefault3">
                                     От дорогих к дешевым
                                 </label>
@@ -52,12 +52,12 @@
                         <div class="col-lg-4 col-md-6 p-4">
                             <div class="card border-primary rounded custom-shadow">
                                 @if ($pr->url_picture == null)
-                                    <img src="/images/images/Not found image.png" class="card-img-top" alt="...">
+                                    <img src="/storage/images/Not found image.png" class="card-img-top" alt="...">
                                 @else
                                     <img src="/storage/images/goods/{{ $pr->url_picture }}" class="card-img-top" alt="...">
                                 @endif
                                 <div class="card-body">
-                                <a href="{{ route('product') }}">
+                                <a href="{{ route('product',$pr->uniq_id) }}">
                                         <p class="card-title">{{ $pr->name }}</p>
                                     </a>
                                     <p class="card-text text-truncate">{{ $pr->description }}</p>
@@ -81,22 +81,9 @@
                         </div>
                     @endforeach 
                 </div>
-                <!-- Пагинация -->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center my-4">
-                        <div class="custom-shadow d-flex">
-                            <li class="page-item disabled">
-                                <a class="page-link">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </div>
-                    </ul>
-                </nav>
+                <div class="">
+                    {{ $products->links() }}
+                </div>
             </div>
         </div>
     </div>

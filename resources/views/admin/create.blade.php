@@ -47,11 +47,11 @@
             </div>
             <div class="mb-3">
                 <label for="old_price" class="block text-sm font-medium text-gray-700 mb-2">Старая цена:</label>
-                <input id="old_price" name="old_price" type="text" placeholder="В случае отсутствия оставьте поле пустым" class="w-full h-12 border border-gray-800 rounded px-3 @error('old_price') border-red-500 @enderror" value="{{ $product->old_price ?? '' }}" />
+                <input id="old_price" name="old_price" type="text" class="w-full h-12 border border-gray-800 rounded px-3 @error('old_price') border-red-500 @enderror" value="{{ $product->old_price ?? '' }}" />
                 @error('old_price')
                     <p class="text-red-500">{{ $message }}</p>
                 @enderror
-            </div>        
+            </div> 
             <div class="mb-3">
                 @if(isset($product) && $product->url_picture)
                     <div>

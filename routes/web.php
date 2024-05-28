@@ -38,6 +38,7 @@ Route::post('/register_process', [RegistrationController::class, 'register'])->n
 
 Route::get('/catalog', [ProductController::class, 'result'])->name('catalog');
 
+
 //профиль
 Route::get('/profile', function () {
     return view('users/profile');
@@ -57,9 +58,7 @@ Route::get('/cart', function () {
 })->name('cart');
 
 //один продукт
-Route::get('/product', function () {
-    return view('goods/product');
-})->name('product');
+Route::get('/product/{uniq_id}', [ProductController::class, 'show'])->name('product');
 
 //оформить заказ
 Route::get('/create_order', function () {
