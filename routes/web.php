@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\{
     AuthController,
+    CartController,
     RegistrationController,
     ProductController,
     ContactFormController
 };
-
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 //glob(app_path().'\Http\Controllers\*.php')
@@ -39,6 +40,8 @@ Route::post('/register_process', [RegistrationController::class, 'register'])->n
 Route::get('/catalog', [ProductController::class, 'result'])->name('catalog');
 
 
+
+
 //профиль
 Route::get('/profile', function () {
     return view('users/profile');
@@ -52,7 +55,11 @@ Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
 
-//каталог
+
+// // поиск товара
+// Route::get('/search', [ProductController::class, 'search'])->name('search');
+
+//корзина
 Route::get('/cart', function () {
     return view('carts/cart');
 })->name('cart');

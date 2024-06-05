@@ -9,12 +9,37 @@ class ProductController extends Controller
 {
     public function result(Request $request)
     {
+        // Получаем все товары
         $query = Product::query();
+        if ($request->has('category') && $request->category != null) {
+            $query->where('category', $request->category);
+        }
+    
+        // Поиск по имени, если параметр name присутствует и не пуст
+        if ($request->has('name') && $request->name != null) {
+            $query->where('name', 'like', '%'.$request->input('name').'%');
+        }
+
+        $this->sort_catalog($request, $query);
+
+        // Получаем отфильтрованные и отсортированные товары с пагинацией
+        $products = $query->paginate(6)->appends($request->all());
+        return view('goods/catalog', [
+            'products' => $products,
+            'category' => $request->category,
+            'name' => $request->name,
+            'onSale' => $request->input('on_sale'),
+            'orderBy' => $request->input('order_by')
+        ]);
+    }
+
+    public function sort_catalog($request, $query)
+    {
         // Фильтрация по акции
         if ($request->has('on_sale') && $request->input('on_sale') == 'on') {
-            $query->where('old_price', '!=', 'NULL');
+            $query->where('old_price', '!=', null);
         }
-        // dd( $products = $query->paginate(6)->appends($request->all()));
+
         //сортировка
         if ($request->has('order_by')) {
             switch ($request->input('order_by')) {
@@ -29,15 +54,6 @@ class ProductController extends Controller
                     break;
             }
         }
-        
-
-        $products = $query->paginate(6)->appends($request->all());
-        // dd($products);
-        return view('goods/catalog', [
-            'products' => $products,
-            'onSale' => $request->input('on_sale'),
-            'orderBy' => $request->input('order_by')
-    ]);
     }
 
     public function show($uniq_id)

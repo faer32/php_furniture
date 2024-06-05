@@ -17,10 +17,11 @@
                             Фильтры
                         </button>
                 
-                        <form action="{{ route('catalog') }}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
+                        <form action="{{ route('catalog')}}" method="get" class="dropdown-menu bg-dark" data-bs-theme="dark">
                             <div class="form-check text-white mx-3">
                                 <input class="form-check-input" type="checkbox" name="on_sale" id="flexCheckDefault" value="on" {{ $onSale == 'on' ? 'checked' : '' }}>
-                                <input type="hidden" name="q" value="request.GET.q">
+                                <input type="hidden" name="name" value="{{ request()->name }}">
+                                <input type="hidden" name="category" value="{{ request()->category }}">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Товары по акции
                                 </label>

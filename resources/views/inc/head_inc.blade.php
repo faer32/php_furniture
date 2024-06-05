@@ -51,10 +51,12 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <form action="{{ route('catalog') }}" method="get" class="d-flex" role="search">
+                        <input id="searchInput" class="form-control me-2" name="name" type="search" placeholder="Поиск" aria-label="Search" value="">
                         <button class="btn btn-outline-success text-white" type="submit">Поиск</button>
+                        <input type="hidden" name="category" value="{{ request()->input('category') }}">
                     </form>
+                    {{-- <select id="searchResults" size="5" class="form-select mt-2" data-search-route="{{ route('catalog') }}"></select> --}}
                 </div>
             </div>
         </nav>
